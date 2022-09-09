@@ -1,0 +1,12 @@
+{
+  "name": "ngx-web-document-scanner",
+  "version": "0.0.1",
+  "peerDependencies": {
+    "@angular/common": "^14.1.0",
+    "@angular/core": "^14.1.0",
+    "dwt": "^17.3.1"
+  },
+  "dependencies": {
+    "tslib": "^2.3.0"
+  }
+}
