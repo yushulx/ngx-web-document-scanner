@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { NgxWebDocumentScannerService } from './ngx-web-document-scanner.service';
+import { NgxDocumentScannerService } from './ngx-web-document-scanner.service';
 
-describe('NgxWebDocumentScannerService', () => {
-  let service: NgxWebDocumentScannerService;
+describe('NgxDocumentScannerService', () => {
+  let service: NgxDocumentScannerService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(NgxWebDocumentScannerService);
+    service = TestBed.inject(NgxDocumentScannerService);
   });
 
   it('should be created', () => {

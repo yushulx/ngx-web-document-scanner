@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "angular-document-scanner": {
+    "angular-camera-capture": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -13,14 +13,19 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/angular-document-scanner",
+            "outputPath": "dist/angular-camera-capture",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              {
+                "glob": "**/*",
+                "input": "./node_modules/dwt/dist",
+                "output": "assets/dynamic-web-twain"
+              }
             ],
             "styles": [
               "src/styles.css"
@@ -64,10 +69,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "angular-document-scanner:build:production"
+              "browserTarget": "angular-camera-capture:build:production"
             },
             "development": {
-              "browserTarget": "angular-document-scanner:build:development"
+              "browserTarget": "angular-camera-capture:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -75,7 +80,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "angular-document-scanner:build"
+            "browserTarget": "angular-camera-capture:build"
           }
         },
         "test": {
@@ -87,7 +92,12 @@
             "karmaConfig": "karma.conf.js",
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              {
+                "glob": "**/*",
+                "input": "./node_modules/dwt/dist",
+                "output": "assets/dynamic-web-twain"
+              }
             ],
             "styles": [
               "src/styles.css"
@@ -128,5 +138,8 @@
         }
       }
     }
+  },
+  "cli": {
+    "analytics": false
   }
 }
