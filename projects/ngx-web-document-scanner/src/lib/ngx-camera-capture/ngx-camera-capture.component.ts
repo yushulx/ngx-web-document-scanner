@@ -11,11 +11,12 @@ export class NgxCameraCaptureComponent implements OnInit {
   dwtObject: WebTwain | undefined;
   videoSelect: HTMLSelectElement | undefined;
   sourceDict: any = {};
-  containerId = 'dwtcontrolContainer';
-  @Input() useLocalService: boolean;
+  @Input() containerId = '';
+  @Input() useLocalService = true;
+  @Input() width = '600px';
+  @Input() height = '600px';
 
   constructor() {
-    this.useLocalService = false;
   }
 
   ngOnDestroy() {
@@ -24,7 +25,7 @@ export class NgxCameraCaptureComponent implements OnInit {
 
   ngOnInit(): void {
     this.videoSelect = document.querySelector('select#videoSource') as HTMLSelectElement;
-    Dynamsoft.DWT.Containers = [{ ContainerId: this.containerId, Width: '300px', Height: '400px' }];
+    Dynamsoft.DWT.Containers = [{ ContainerId: this.containerId, Width: this.width, Height: this.height }];
     Dynamsoft.DWT.UseLocalService = this.useLocalService;
     Dynamsoft.DWT.Load();
     Dynamsoft.DWT.RegisterEvent('OnWebTwainReady', () => { this.onReady(); });
@@ -55,6 +56,8 @@ export class NgxCameraCaptureComponent implements OnInit {
   onReady() {
     this.dwtObject = Dynamsoft.DWT.GetWebTwain('dwtcontrolContainer');
     this.updateCameraList();
+    let elem = document.getElementById('camera-capture');
+    if (elem) elem.hidden = false;
   }
 
   async createCameraScanner(deviceId: string): Promise<void> {

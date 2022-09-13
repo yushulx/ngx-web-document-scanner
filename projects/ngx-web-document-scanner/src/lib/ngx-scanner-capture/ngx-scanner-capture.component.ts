@@ -10,10 +10,11 @@ import Dynamsoft from 'dwt';
 export class NgxScannerCaptureComponent implements OnInit {
   dwtObject: WebTwain | undefined;
   selectSources: HTMLSelectElement | undefined;
-  containerId = 'dwtcontrolContainer';
-  @Input() useLocalService: boolean;
+  @Input() containerId = '';
+  @Input() useLocalService = false;
+  @Input() width = '600px';
+  @Input() height = '600px';
   constructor() { 
-    this.useLocalService = true;
   }
 
   ngOnDestroy() {
@@ -21,7 +22,7 @@ export class NgxScannerCaptureComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    Dynamsoft.DWT.Containers = [{ ContainerId: this.containerId, Width: '300px', Height: '400px' }];
+    Dynamsoft.DWT.Containers = [{ ContainerId: this.containerId, Width: this.width, Height: this.height }];
     Dynamsoft.DWT.UseLocalService = this.useLocalService;
     Dynamsoft.DWT.Load();
     Dynamsoft.DWT.RegisterEvent('OnWebTwainReady', () => { this.onReady(); });
@@ -40,6 +41,9 @@ export class NgxScannerCaptureComponent implements OnInit {
         this.selectSources.options.add(new Option(<string>sources[i], i.toString()));
       }
     }
+
+    let elem = document.getElementById('scanner-capture');
+    if (elem) elem.hidden = false;
   }
 
   acquireImage(): void {

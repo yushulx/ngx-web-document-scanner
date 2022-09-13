@@ -1,2 +1,7 @@
-<ngx-camera-capture [useLocalService]="false"
+<div id="container">
+  <div id="dwtcontrolContainer"></div>
+</div>
+
+<ngx-camera-capture [useLocalService]="false" [containerId]="'dwtcontrolContainer'"
+[width]="'600px'" [height]="'600px'"
 ></ngx-camera-capture>

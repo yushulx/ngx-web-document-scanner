@@ -1,6 +1,5 @@
-<div id="container">
+<div id="scanner-capture" hidden>
     <select *ngIf="useLocalService" id="sources"></select><br />
     <button *ngIf="useLocalService" (click)="acquireImage()">Acquire Images</button>
     <button (click)="openImage()">Open Documents</button>
-    <div id="dwtcontrolContainer"></div>
 </div>

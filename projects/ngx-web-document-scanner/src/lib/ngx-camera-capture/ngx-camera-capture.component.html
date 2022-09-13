@@ -1,12 +1,7 @@
-<div class="document-scanner">
+<div id="camera-capture" hidden>
     <div>
-        <label for="videoSource">Video source: </label>
+        <label for="videoSource"></label>
         <select id="videoSource"></select>
-        <p></p>
         <button id="scanButton" (click)="scanDocument()">Scan Document</button> <button id="scanButton" (click)="downloadDocument()">Download Document</button>
     </div>
-    
-    <h3>Document Container</h3>
-    <div id="dwtcontrolContainer"></div>
-
 </div>
