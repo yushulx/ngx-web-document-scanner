@@ -1,5 +1,6 @@
 <div id="scanner-capture" hidden>
     <select *ngIf="useLocalService" id="sources"></select><br />
-    <button *ngIf="useLocalService" (click)="acquireImage()">Acquire Images</button>
-    <button (click)="openImage()">Open Documents</button>
+    <button *ngIf="useLocalService" (click)="acquireImage()">Scan Documents</button>
+    <button (click)="openImage()">Load Documents</button>
+    <button (click)="downloadDocument()">Download Documents</button>
 </div>

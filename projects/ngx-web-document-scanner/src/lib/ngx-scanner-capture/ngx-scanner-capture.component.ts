@@ -74,4 +74,10 @@ export class NgxScannerCaptureComponent implements OnInit {
         //failure
       });
   }
+
+  downloadDocument() {
+    if (this.dwtObject) {
+      this.dwtObject.SaveAsJPEG("document.jpg", this.dwtObject.CurrentImageIndexInBuffer);
+    }
+  }
 }
