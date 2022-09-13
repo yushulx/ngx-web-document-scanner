@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { WebTwain } from 'dwt/dist/types/WebTwain'; 
+import { WebTwain } from 'dwt/dist/types/WebTwain';
 import Dynamsoft from 'dwt';
 
 @Component({
@@ -11,13 +11,16 @@ export class NgxCameraCaptureComponent implements OnInit {
   dwtObject: WebTwain | undefined;
   videoSelect: HTMLSelectElement | undefined;
   sourceDict: any = {};
+  @Input() useLocalService: boolean;
 
-  constructor() { }
+  constructor() {
+    this.useLocalService = false;
+  }
 
   ngOnInit(): void {
     this.videoSelect = document.querySelector('select#videoSource') as HTMLSelectElement;
-    Dynamsoft.DWT.Containers = [{ ContainerId: 'dwtcontrolContainer' }];
-    Dynamsoft.DWT.UseLocalService = false;
+    Dynamsoft.DWT.Containers = [{ ContainerId: 'dwtcontrolContainer', Width: '300px', Height: '400px' }];
+    Dynamsoft.DWT.UseLocalService = this.useLocalService;
     Dynamsoft.DWT.Load();
     Dynamsoft.DWT.RegisterEvent('OnWebTwainReady', () => { this.onReady(); });
   }

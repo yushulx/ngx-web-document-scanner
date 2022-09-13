@@ -21,7 +21,7 @@ import { NgxDocumentScannerModule } from 'ngx-web-document-scanner';
     BrowserModule,
     AppRoutingModule,
     NgxDocumentScannerModule.forRoot({ 
-      licenseKey: "LICENSE-KEY", 
+      licenseKey: "t01529gIAAIGHmfSo/qdMWQ5slm6TDyCI+vx2zTkVYuuBJyIn1jAxUGeIsZwB7Oma+DoyPk4NTxMg7XAMQb+PjbuYU3fGposwN1JzowgMlibqXsmm4oxu4NYAO4AvcgTtli9w5/s0quCAZoAJaN34Ac5DfnqlQUgPNANMwHlIB4JOVnum8iRk7SElBJoBJqCHdGAqGIUzX1rpmp0=", 
       resourcePath: "assets/dynamic-web-twain"}),
   ],
   providers: [],
