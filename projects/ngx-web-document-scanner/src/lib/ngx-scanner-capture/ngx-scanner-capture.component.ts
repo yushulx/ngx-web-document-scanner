@@ -16,15 +16,20 @@ export class NgxScannerCaptureComponent implements OnInit {
     this.useLocalService = true;
   }
 
-  ngOnInit(): void {
-    Dynamsoft.DWT.Containers = [{ WebTwainId: 'dwtObject', ContainerId: this.containerId, Width: '300px', Height: '400px' }];
-    Dynamsoft.DWT.RegisterEvent('OnWebTwainReady', () => { this.Dynamsoft_OnReady(); });
-    Dynamsoft.DWT.Load();
+  ngOnDestroy() {
+    Dynamsoft.DWT.Unload();
   }
 
-  Dynamsoft_OnReady(): void {
-    this.dwtObject = Dynamsoft.DWT.GetWebTwain(this.containerId);
+  ngOnInit(): void {
+    Dynamsoft.DWT.Containers = [{ ContainerId: this.containerId, Width: '300px', Height: '400px' }];
     Dynamsoft.DWT.UseLocalService = this.useLocalService;
+    Dynamsoft.DWT.Load();
+    Dynamsoft.DWT.RegisterEvent('OnWebTwainReady', () => { this.onReady(); });
+  }
+
+  onReady(): void {
+    this.dwtObject = Dynamsoft.DWT.GetWebTwain(this.containerId);
+    
     if (!this.useLocalService) {
       this.dwtObject.Viewer.cursor = "pointer";
     } else {

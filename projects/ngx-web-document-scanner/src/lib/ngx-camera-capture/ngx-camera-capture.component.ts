@@ -11,15 +11,20 @@ export class NgxCameraCaptureComponent implements OnInit {
   dwtObject: WebTwain | undefined;
   videoSelect: HTMLSelectElement | undefined;
   sourceDict: any = {};
+  containerId = 'dwtcontrolContainer';
   @Input() useLocalService: boolean;
 
   constructor() {
     this.useLocalService = false;
   }
 
+  ngOnDestroy() {
+    Dynamsoft.DWT.Unload();
+  }
+
   ngOnInit(): void {
     this.videoSelect = document.querySelector('select#videoSource') as HTMLSelectElement;
-    Dynamsoft.DWT.Containers = [{ ContainerId: 'dwtcontrolContainer', Width: '300px', Height: '400px' }];
+    Dynamsoft.DWT.Containers = [{ ContainerId: this.containerId, Width: '300px', Height: '400px' }];
     Dynamsoft.DWT.UseLocalService = this.useLocalService;
     Dynamsoft.DWT.Load();
     Dynamsoft.DWT.RegisterEvent('OnWebTwainReady', () => { this.onReady(); });
