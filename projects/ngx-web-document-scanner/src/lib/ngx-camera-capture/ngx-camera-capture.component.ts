@@ -54,7 +54,7 @@ export class NgxCameraCaptureComponent implements OnInit {
   }
 
   onReady() {
-    this.dwtObject = Dynamsoft.DWT.GetWebTwain('dwtcontrolContainer');
+    this.dwtObject = Dynamsoft.DWT.GetWebTwain(this.containerId);
     this.updateCameraList();
     let elem = document.getElementById('camera-capture');
     if (elem) elem.hidden = false;
