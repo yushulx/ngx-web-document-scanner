@@ -6,9 +6,9 @@ Ngx-web-document-scanner is an Angular document scanning module built with [Dyna
 ## Usage
 1. Install the Angular library:
 
-  ```bash
-  npm install ngx-web-document-scanner --save
-  ``` 
+    ```bash
+    npm install ngx-web-document-scanner --save
+    ``` 
 
 2. Import the module in `app.module.ts`:
 
