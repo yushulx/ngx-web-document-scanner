@@ -5,6 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ScannerCaptureComponent } from './scanner-capture/scanner-capture.component';
 import { CameraCaptureComponent } from './camera-capture/camera-capture.component';
+import { DocumentScannerComponent } from './document-scanner/document-scanner.component';
 import { ProductListComponent } from './product-list/product-list.component';
 import { TopBarComponent } from './top-bar/top-bar.component';
 import { NgxDocumentScannerModule } from 'ngx-web-document-scanner';
@@ -14,6 +15,7 @@ import { NgxDocumentScannerModule } from 'ngx-web-document-scanner';
     AppComponent,
     ScannerCaptureComponent,
     CameraCaptureComponent,
+    DocumentScannerComponent,
     ProductListComponent,
     TopBarComponent,
   ],

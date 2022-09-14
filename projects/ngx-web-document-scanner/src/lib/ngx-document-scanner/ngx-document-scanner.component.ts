@@ -1,13 +1,14 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, OnInit, Input} from '@angular/core';
 import { WebTwain } from 'dwt/dist/types/WebTwain';
 import Dynamsoft from 'dwt';
 
 @Component({
-  selector: 'ngx-camera-capture',
-  templateUrl: './ngx-camera-capture.component.html',
-  styleUrls: ['./ngx-camera-capture.component.css']
+  selector: 'ngx-document-scanner',
+  templateUrl: './ngx-document-scanner.component.html',
+  styleUrls: ['./ngx-document-scanner.component.css']
 })
-export class NgxCameraCaptureComponent implements OnInit {
+export class NgxDocumentScannerComponent implements OnInit {
+
   dwtObject: WebTwain | undefined;
   videoSelect: HTMLSelectElement | undefined;
   sourceDict: any = {};
@@ -15,7 +16,6 @@ export class NgxCameraCaptureComponent implements OnInit {
   @Input() useLocalService = true;
   @Input() width = '600px';
   @Input() height = '600px';
-  @Input() previewId = '';
 
   constructor() {
   }
@@ -32,7 +32,7 @@ export class NgxCameraCaptureComponent implements OnInit {
     Dynamsoft.DWT.RegisterEvent('OnWebTwainReady', () => { this.onReady(); });
   }
 
-  openCamera() {
+  scanDocument() {
     if (this.videoSelect) {
       let index = this.videoSelect.selectedIndex;
       if (index < 0) return;
@@ -48,11 +48,6 @@ export class NgxCameraCaptureComponent implements OnInit {
 
   }
 
-  async captureDocument() {
-    if (this.dwtObject) {
-      await this.dwtObject.Addon.Camera.capture();
-    }
-  }
   async downloadDocument() {
     if (this.dwtObject) {
       this.dwtObject.SaveAsJPEG("document.jpg", this.dwtObject.CurrentImageIndexInBuffer);
@@ -69,7 +64,19 @@ export class NgxCameraCaptureComponent implements OnInit {
   async createCameraScanner(deviceId: string): Promise<void> {
     if (this.dwtObject) {
       await this.dwtObject.Addon.Camera.closeVideo();
-      await this.dwtObject.Addon.Camera.play(document.getElementById(this.previewId) as HTMLDivElement);
+      this.dwtObject.Addon.Camera.scanDocument({
+        scannerViewer: {
+          deviceId: deviceId,
+          fullScreen: true,
+          autoDetect: {
+            enableAutoDetect: true
+          },
+          continuousScan: true
+        }
+
+      }).then(
+        function () { console.log("OK"); },
+        function (error: any) { console.log(error.message); });
     }
   }
 
@@ -92,4 +99,5 @@ export class NgxCameraCaptureComponent implements OnInit {
       });
     }
   }
+
 }

@@ -6,19 +6,19 @@ export interface Product {
 
 export const products = [
   {
-    id: 'reader',
+    id: 'scanner-capture',
     name: 'Scanner Capture',
     description: 'Capture documents from scanner',
   },
   {
-    id: 'scanner',
+    id: 'camera-capture',
     name: 'Camera Capture',
     description: 'Capture documents from camera stream',
   },
+  {
+    id: 'document-scanner',
+    name: 'Document Scanner',
+    description: 'Scan documents from camera stream and do edge detection, perspective correction and image enhancement',
+  },
 ];
 
-/*
-Copyright Google LLC. All Rights Reserved.
-Use of this source code is governed by an MIT-style license that
-can be found in the LICENSE file at https://angular.io/license
-*/
