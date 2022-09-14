@@ -50,14 +50,14 @@ typescript                      4.6.4
       licenseKey: "LICENSE-KEY", 
       resourcePath: "assets/dynamic-web-twain"}),
     ```
-
-4 `HTTPS` is required for web camera access. Run the Angular application as follows:
+    
+4. `HTTPS` is required for web camera access. Run the Angular application as follows:
     
     ```bash
     ng serve --ssl
     ```
 
-  ![Angular web document scanner](https://www.dynamsoft.com/codepool/img/2022/09/angular-document-scanner-sdk.png)
+    ![Angular web document scanner](https://www.dynamsoft.com/codepool/img/2022/09/angular-document-scanner-sdk.png)
 
 ## Publish the Angular Library Project
 
