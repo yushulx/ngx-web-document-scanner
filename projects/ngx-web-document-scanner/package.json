@@ -1,7 +1,7 @@
 {
   "name": "ngx-web-document-scanner",
-  "version": "1.0.1",
-  "description": "Machine readable zone (MRZ) reading SDK for passport, Visa, ID card and travel document.",
+  "version": "1.0.0",
+  "description": "An Angular wrapper based on Dynamic Web TWAIN, providing components for scanning documents from USB camera and document scanner",
   "author": "yushulx",
   "homepage": "https://github.com/yushulx/ngx-web-document-scanner",
   "repository": {
@@ -14,13 +14,14 @@
     "dwt": "^17.3.1"
   },
   "keywords": [
-    "mrz",
-    "machine-readable-zone",
-    "ocr",
-    "passport",
-    "Visa",
-    "ID",
-    "travel-documents"
+    "Angular",
+    "document scan",
+    "TWAIN",
+    "scanner",
+    "camera",
+    "document",
+    "edge detection",
+    "perspective correction"
   ],
   "dependencies": {
     "tslib": "^2.3.0"

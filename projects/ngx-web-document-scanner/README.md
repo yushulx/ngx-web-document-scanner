@@ -1,6 +1,6 @@
-# Angular Mrz Sdk
+# Angular Web Document Scanner Sdk
 
-Ngx-mrz-sdk is an Angular MRZ recognition module built with [Dynamic Web TWAIN](https://www.npmjs.com/package/dynamsoft-label-recognizer) and [Dynamsoft Camera Enhancer](https://www.npmjs.com/package/dynamsoft-camera-enhancer).
+Ngx-web-document-scanner is an Angular document scanning module built with [Dynamic Web TWAIN](https://www.dynamsoft.com/web-twain/overview/).
 
 
 ## Usage
@@ -21,16 +21,15 @@ Ngx-mrz-sdk is an Angular MRZ recognition module built with [Dynamic Web TWAIN](
         BrowserModule,
         AppRoutingModule,
         NgxDocumentScannerModule.forRoot({ 
-          licenseKey: "LICENSE-KEY", 
-          dceResourcePath: "assets/dynamsoft-camera-enhancer", 
-          dlrResourcePath: "assets/dynamsoft-label-recognizer"}),
+      licenseKey: "LICENSE-KEY", 
+      resourcePath: "assets/dynamic-web-twain"}),
       ],
       ...
     })
     ```
 
-    - `licenseKey`: get the license key of Dynamic Web TWAIN from [Dynamsoft customer portal](https://www.dynamsoft.com/customer/license/trialLicense?product=dlr).
-    - `dceResourcePath` and `dlrResourcePath`: configure the static resources in `angular.json`, and set the output path:
+    - `licenseKey`: get the license key of Dynamic Web TWAIN from [Dynamsoft customer portal](https://www.dynamsoft.com/customer/license/trialLicense?product=dwt).
+    - `resourcePath`: configure the static resources in `angular.json`:
 
         ```json
         "build": {
@@ -41,20 +40,15 @@ Ngx-mrz-sdk is an Angular MRZ recognition module built with [Dynamic Web TWAIN](
                 "src/assets",
                 {
                   "glob": "**/*",
-                  "input": "./node_modules/dynamsoft-label-recognizer/dist",
-                  "output": "assets/dynamsoft-label-recognizer"
-                },
-                {
-                  "glob": "**/*",
-                  "input": "./node_modules/dynamsoft-camera-enhancer/dist",
-                  "output": "assets/dynamsoft-camera-enhancer"
+                  "input": "./node_modules/dwt/dist",
+                  "output": "assets/dynamic-web-twain"
                 }
               ],
             ...
         }
         ```
 
-3. Generate a new component and inject the `NgxDocumentScannerService` in *.ts file:
+3. Generate a new component and inject the `NgxDocumentScannerService` in `*.ts` file:
 
     ```bash
     ng generate component foo
@@ -79,24 +73,43 @@ Ngx-mrz-sdk is an Angular MRZ recognition module built with [Dynamic Web TWAIN](
 
     ```
 
-4. Include `ngx-scanner-capture` or `ngx-camera-capture` in HTML file:
-    - `<ngx-scanner-capture>`: a component to scan MRZ from image files.
-    - `<ngx-camera-capture>`: a component to scan MRZ from a video stream.
+4. In `*.html` file, create an HTML element as the image container and add an Angular component. There are three components in the module:
+    - `<ngx-scanner-capture>`: capture document images from a scanner.
 
-5. Set the **properties**:
-    - result: an array including the recognized MRZ characters and the extracted information.
-    - showOverlay: a boolean value indicating whether to show the overlay.
-    
-    For example:
+        ```html
+        <div id="container">
+          <div id="dwtcontrolContainer"></div>
+        </div>
 
-    ```html
-    <ngx-camera-capture (result)="onResultReady($event)" [showOverlay]="true"></ngx-camera-capture>
-    ```
-  
+        <ngx-scanner-capture [useLocalService]="true" [containerId]="'dwtcontrolContainer'"
+        [width]="'600px'" [height]="'600px'"></ngx-scanner-capture>
+        ```
+    - `<ngx-camera-capture>`: capture document images from a camera. An extra HTML element is required for the camera preview.
 
-    
+        ```html
+        <div id="container">
+          <div id="dwtcontrolContainer"></div>
+        </div>
+
+        <ngx-camera-capture [useLocalService]="false" [containerId]="'dwtcontrolContainer'"
+        [width]="'600px'" [height]="'600px'" [previewId]="'preview'"
+        ></ngx-camera-capture>
+
+        <div id="preview"></div>
+        ```
+    - `<ngx-document-scanner>`: capture document images from a camera and do image processing: edge detection, image cropping, perspective correction and image enhancement.
+
+        ```html
+        <div id="container">
+          <div id="dwtcontrolContainer"></div>
+        </div>
+
+        <ngx-scanner-capture [useLocalService]="true" [containerId]="'dwtcontrolContainer'"
+        [width]="'600px'" [height]="'600px'"></ngx-scanner-capture>
+        ```
+
 
 ## Sample Code
 [https://github.com/yushulx/ngx-web-document-scanner/tree/main/src/app](https://github.com/yushulx/ngx-web-document-scanner/tree/main/src/app)        
 
-![Angular MRZ scanner](https://camo.githubusercontent.com/1a3c8b09077184eb67d8b0c2ae60ece67976e55f711fb76307249ddf899adc02/68747470733a2f2f7777772e64796e616d736f66742e636f6d2f636f6465706f6f6c2f696d672f323032322f30382f616e67756c61722d6d727a2d7363616e6e65722e706e67)
+![Angular web document scanner](https://www.dynamsoft.com/codepool/img/2022/09/angular-document-scanner-sdk.png)
