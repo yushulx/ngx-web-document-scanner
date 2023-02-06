@@ -43,7 +43,6 @@ export class NgxCameraCaptureComponent implements OnInit {
           if (this.videoSelect) this.createCameraScanner(this.sourceDict[option.text]);
         });
       }
-
     }
 
   }
