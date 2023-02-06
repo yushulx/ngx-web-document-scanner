@@ -40,6 +40,9 @@ typescript                      4.6.4
 2. The `ngx-web-document-scanner` is located in `projects/ngx-web-document-scanner`. Add the `--watch` flag to run the incremental build as a background process:
 
     ```bash
+    cd projects/ngx-web-document-scanner
+    npm install
+    cd ../../
     ng build ngx-web-document-scanner --watch
     ```
 
